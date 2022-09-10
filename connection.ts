@@ -8,7 +8,7 @@ const connection = new Sequelize({
   dialect: "postgres",
   host: "localhost",
   username: "postgres",
-  password: "cr07",
+  password: "",
   database: "teste",
   logging: false,
   models: [ User,Estacao,Acesso],

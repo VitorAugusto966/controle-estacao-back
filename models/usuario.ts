@@ -2,7 +2,7 @@ import { Table, Model, Column, DataType, BelongsToMany, PrimaryKey, ForeignKey }
 import { Acesso } from "./acesso";
 import { Estacao } from "./estacao";
 
-/// Adicionar tipo - status
+
 
 
 @Table({
