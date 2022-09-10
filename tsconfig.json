@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "compilerOptions": {
       "esModuleInterop": true,
@@ -13,4 +14,21 @@
       ],
       
     }
+=======
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "target": "esnext",
+      "moduleResolution": "Node",
+      "sourceMap": true,
+      "outDir": "dist",
+      "strict": true,
+      "lib": [
+        "esnext"
+      ],
+      
+    }
+>>>>>>> refs/remotes/origin/main
   }
