@@ -5,21 +5,35 @@ import { User } from "./models/usuario";
 import bodyParser from 'body-parser';
 import { Estacao } from './models/estacao';
 import {Acesso} from './models/acesso';
+import Mail from './email'
 const cors = require('cors');
+var bcrypt = require ('bcrypt')
+
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:true}));
 
-app.get("/", (req: Request, res: Response): Response => {
-  return res.json({ message: "Sequelize Example 🤟" });
-});
+ app.get("/", (req: Request, res: Response): Response => {
+   return res.json({ message: "Sequelize Example 🤟" });
+ });
 
 app.get("/users", async (req: Request, res: Response): Promise<Response> => {
   const allUsers: User[] = await User.findAll();
   return res.status(200).json(allUsers);
+});
+
+app.route("/redefinir").post((req, res) => {
+  const message = Object.assign({}, req.body);     
+            
+  Mail.to = message.to;
+  Mail.subject = message.subject;
+  Mail.message = message.message;
+  let result = Mail.enviaEmail();
+
+  res.status(200).json({ 'result': result })
 });
 
 app.get("/estacoes", async (req: Request, res: Response): Promise<Response> => {
@@ -49,6 +63,9 @@ app.get("/users/:id", async (req: Request, res: Response): Promise<Response> => 
 });
 
 app.post("/users", async (req: Request, res: Response): Promise<Response> => {
+ // var salt = bcrypt.genSaltSync(10)
+  //req.body.senha = bcrypt.hashSync(req.body.senha, salt)
+
   const user: User = await User.create({ ...req.body });
   return res.status(201).json(user);
 });
