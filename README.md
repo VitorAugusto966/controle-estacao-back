@@ -1,1 +1,1 @@
-Back-end do aplicativo de controle de acesso de estações.
+Back-end do aplicativo de controle centralizado de acesso à estações.
