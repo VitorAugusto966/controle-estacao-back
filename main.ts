@@ -7,10 +7,12 @@ import { Estacao } from './models/estacao';
 import {Acesso} from './models/acesso';
 import Mail from './email'
 const cors = require('cors');
-var bcrypt = require ('bcrypt')
+import * as dotenv from "dotenv";
+import UserController from './controllers/UserController';
 
 
 const app = express();
+dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -19,6 +21,8 @@ app.use(express.urlencoded({extended:true}));
  app.get("/", (req: Request, res: Response): Response => {
    return res.json({ message: "Sequelize Example 🤟" });
  });
+
+app.post("/login", UserController.login);
 
 app.get("/users", async (req: Request, res: Response): Promise<Response> => {
   const allUsers: User[] = await User.findAll();
